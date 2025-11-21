@@ -4,7 +4,7 @@
 # =============================================================================
 
 # Toolchain RISC-V
-RISCV_PREFIX = riscv32-linux-gnu-
+RISCV_PREFIX = riscv64-linux-gnu-
 CC = $(RISCV_PREFIX)gcc
 AS = $(RISCV_PREFIX)as
 LD = $(RISCV_PREFIX)ld
