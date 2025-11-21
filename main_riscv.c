@@ -6,7 +6,7 @@ extern void kernel_start(int *temps, int len);
 int main() {
 
     // Escenario seleccionado (1-4)
-    current_scenario = 1;  
+    current_scenario = 3;  
     
     // temps1
     int temps_array[100] = {
