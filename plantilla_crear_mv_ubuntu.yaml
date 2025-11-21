@@ -1,0 +1,54 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Description: "VM Ubuntu para proyecto RISC-V"
+
+Parameters:
+  InstanceName:
+    Type: String
+    Default: "MV-Ubuntu-RISCV"
+  AMI:
+    Type: String
+    Default: "ami-0e84f97592c6b078b" # Ubuntu 22.04 en us-east-1
+
+Resources:
+  EC2Instance:
+    Type: AWS::EC2::Instance
+    Properties:
+      ImageId: !Ref AMI
+      InstanceType: t2.micro
+      KeyName: vockey
+      SecurityGroupIds:
+        - !Ref InstanceSecurityGroup
+      Tags:
+        - Key: Name
+          Value: !Ref InstanceName
+      BlockDeviceMappings:
+        - DeviceName: /dev/sda1
+          Ebs:
+            VolumeSize: 20
+
+      UserData:
+        Fn::Base64: !Sub |
+          #!/bin/bash
+          apt-get update -y
+          apt-get install -y git gdb-multiarch qemu-system-misc gcc-riscv32-linux-gnu
+
+          cd /home/ubuntu
+          git clone https://github.com/andrxeaa/SC-S14-Lab5.git
+          chown -R ubuntu:ubuntu SC-S14-Lab5
+
+  InstanceSecurityGroup:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: "Permitir SSH"
+      SecurityGroupIngress:
+        - IpProtocol: tcp
+          FromPort: 22
+          ToPort: 22
+          CidrIp: 0.0.0.0/0
+Outputs:
+  InstanceId:
+    Description: "ID de la instancia EC2"
+    Value: !Ref EC2Instance
+  InstancePublicIP:
+    Description: "IP publica de la instancia"
+    Value: !GetAtt EC2Instance.PublicIp
