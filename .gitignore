@@ -1,55 +1,57 @@
-# Prerequisites
-*.d
-
-# Object files
+# Archivos compilados y ejecutables
 *.o
-*.ko
-*.obj
+*.out
+*.exe
+test_satelite
+satelite
+*.elf
+*.bin
+*.hex
+*.dump
+
+# Archivos temporales de compilación
+*.a
+*.so
+*.dylib
 *.elf
 
-# Linker output
-*.ilk
-*.map
-*.exp
-
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
+# Archivos de depuración
 *.dSYM/
 *.su
 *.idb
 *.pdb
 
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+# Archivos generados por editores
+*~
+*.swp
+*.swo
+*.bak
+.*.sw?
+.vscode/
+.idea/
+*.code-workspace
 
-# debug information files
-*.dwo
+# Archivos del sistema operativo
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Archivos de logs y resultados temporales
+*.log
+resultado.log
+
+# Archivos de prueba temporales
+test_runner_temp.c
+test2
+test3
+
+# Core dumps
+core
+core.*
+*.pdf
+*.dump
+*.exe
